@@ -24,7 +24,6 @@
 .DS_Store
 *.pem
 .shots/
-/legacy/form-submissions.log
 
 # debug
 npm-debug.log*
