@@ -1,26 +1,115 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ */
+/*  agriwise global — visual system                                   */
+/*  geometric (futura), all-lowercase, paper + forest, framed         */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-canvas: #f7f5ef;
+  --color-canvas-2: #efece1;
+  --color-ink: #17140f;
+  --color-ink-soft: #453f37;
+  --color-muted: #7c7568;
+  --color-line: #ddd7c7;
+
+  --color-forest: #1f5c37;
+  --color-forest-deep: #143f27;
+  --color-forest-950: #0b2718;
+  --color-leaf: #3ba15c;
+  --color-leaf-bright: #63c283;
+  --color-mist: #e9f1e9;
+
+  /* futura first (if a viewer/licence provides it), then the closest
+     open geometric sans we self-host, then system geometrics */
+  --font-display: "Futura", var(--font-geom), "Century Gothic", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Futura", var(--font-geom), "Century Gothic", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-2xl: 0.75rem;
+
+  --shadow-soft: 0 1px 2px rgba(20, 30, 20, 0.03), 0 10px 30px rgba(20, 30, 20, 0.05);
+  --shadow-lift: 0 2px 8px rgba(20, 30, 20, 0.05), 0 30px 70px rgba(20, 30, 20, 0.12);
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-canvas);
+  --foreground: var(--color-ink);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  border-color: var(--color-line);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* everything lowercase, per brand */
+body,
+h1, h2, h3, h4, h5, h6,
+p, a, li, button, input, select, textarea, label, span, figcaption, th, td, dt, dd {
+  text-transform: lowercase;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+
+::selection {
+  background: var(--color-forest);
+  color: #fff;
+}
+
+/* Layout ----------------------------------------------------------- */
+.container-x {
+  width: 100%;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 768px) {
+  .container-x { padding-inline: 2.5rem; }
+}
+
+.text-balance { text-wrap: balance; }
+.text-pretty { text-wrap: pretty; }
+
+/* the logo's double-line frame, reused as a motif ------------------ */
+.frame {
+  position: relative;
+  border: 1px solid currentColor;
+  box-shadow: 0 0 0 4px var(--color-canvas), 0 0 0 5px currentColor;
+}
+
+/* hairline rule used to open every section ------------------------- */
+.rule {
+  border-top: 1px solid var(--color-line);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
 }

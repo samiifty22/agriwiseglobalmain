@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AgriWise Global
 
-## Getting Started
+Marketing site for AgriWise Global, built as the foundation for the future
+AgriWise trading platform.
 
-First, run the development server:
+- **Next.js 16** (App Router) + **React 19** + **TypeScript**
+- **Tailwind CSS v4** — design tokens in [`app/globals.css`](app/globals.css)
+- **motion** (Framer Motion) for scroll reveals, hero and counters
+- **lucide-react** icons
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build
+npm start          # serve the build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Path | Purpose |
+| --- | --- |
+| `app/page.tsx` | Landing page — composes the section components |
+| `app/invest/page.tsx` | "Grow with AgriWise" — investment programmes + ROI calculator |
+| `app/api/contact/route.ts` | Unified form handler (contact / partner / product enquiry) |
+| `lib/content.ts` | **All copy and data** — single source of truth |
+| `components/` | `site-header`, `site-footer`, `hero`, `sections/*`, `forms`, `reveal`, `ui` |
+| `public/` | Images (`hero/`, `products/`, `founders/`, `flags/`, `certs/`, `brand/`) |
+| `legacy/` | The original static HTML site, kept for reference only |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Forms / email
 
-## Learn More
+`POST /api/contact` validates the payload and, if `RESEND_API_KEY` is set,
+sends via [Resend](https://resend.com). Without it, submissions are logged to
+the server console and the request still succeeds (useful for previews).
+See [`.env.example`](.env.example).
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy (Vercel)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Import the repo in Vercel (framework auto-detected).
+2. Add env vars from `.env.example` (`RESEND_API_KEY`, `CONTACT_TO`, `CONTACT_FROM`).
+3. Point the `agriwiseglobal.com` domain at the project.
