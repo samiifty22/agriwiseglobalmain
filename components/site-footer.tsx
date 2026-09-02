@@ -30,12 +30,12 @@ export function SiteFooter() {
 
         <nav className="md:col-span-4">
           <p className="text-xs tracking-[0.2em] text-mist/50">explore</p>
-          <ul className="mt-5 space-y-3 text-sm">
+          <ul className="mt-3 text-sm">
             {nav.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="transition-colors hover:text-leaf-bright"
+                  className="block py-2 transition-colors hover:text-leaf-bright"
                 >
                   {link.label}
                 </Link>
@@ -53,13 +53,19 @@ export function SiteFooter() {
             </li>
             <li className="flex gap-3">
               <Phone className="mt-0.5 size-4 shrink-0 text-leaf-bright" />
-              <a href={`tel:${company.phoneHref}`} className="hover:text-leaf-bright">
+              <a
+                href={`tel:${company.phoneHref}`}
+                className="break-all py-0.5 hover:text-leaf-bright"
+              >
                 {company.phone}
               </a>
             </li>
             <li className="flex gap-3">
               <Mail className="mt-0.5 size-4 shrink-0 text-leaf-bright" />
-              <a href={`mailto:${company.email}`} className="hover:text-leaf-bright">
+              <a
+                href={`mailto:${company.email}`}
+                className="break-all py-0.5 hover:text-leaf-bright"
+              >
                 {company.email}
               </a>
             </li>
@@ -68,7 +74,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container-x flex flex-col gap-2 py-6 text-xs text-mist/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="container-x flex flex-col gap-2 pb-24 pt-6 text-xs text-mist/50 sm:flex-row sm:items-center sm:justify-between sm:pb-6">
           <p>© {new Date().getFullYear()} {company.legalName} all rights reserved.</p>
           <p>{company.domain}</p>
         </div>

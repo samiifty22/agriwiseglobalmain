@@ -70,7 +70,7 @@ export function Hero() {
 
         <motion.h1
           {...rise(0.06)}
-          className="mt-6 max-w-[16ch] text-[2.7rem] leading-[0.98] text-white text-balance sm:text-6xl md:max-w-[18ch] md:text-[5rem] lg:text-[5.75rem]"
+          className="mt-6 max-w-[16ch] text-[2.35rem] leading-[1.02] text-white text-balance [hyphens:none] sm:text-[3.25rem] sm:leading-[1] md:max-w-[18ch] md:text-[5rem] lg:text-[5.75rem]"
         >
           {hero.headline}
         </motion.h1>

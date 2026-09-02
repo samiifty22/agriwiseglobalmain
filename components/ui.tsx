@@ -65,7 +65,7 @@ export function SectionHeader({
       </p>
       <h2
         className={cn(
-          "mt-5 max-w-3xl text-[2rem] leading-[1.03] text-balance sm:text-[2.6rem] md:text-[3rem]",
+          "mt-5 max-w-3xl text-[1.9rem] leading-[1.06] text-balance [hyphens:none] sm:text-[2.6rem] sm:leading-[1.03] md:text-[3rem]",
           invert ? "text-white" : "text-ink",
         )}
       >

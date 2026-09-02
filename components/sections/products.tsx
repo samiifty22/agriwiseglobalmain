@@ -64,19 +64,19 @@ export function Products() {
         />
 
         <div
-          className="mt-14 grid gap-10 lg:grid-cols-12 lg:gap-14"
+          className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14"
           onMouseEnter={() => setPaused(true)}
         >
           {/* ---- selector ---- */}
-          <div className="lg:col-span-4">
+          <div className="min-w-0 lg:col-span-4">
             {/* mobile: horizontal pills */}
-            <div className="-mx-5 flex snap-x gap-2 overflow-x-auto px-5 pb-1 lg:hidden">
+            <div className="flex gap-2 overflow-x-auto pb-3 lg:hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {products.map((prod, i) => (
                 <button
                   key={prod.name}
                   type="button"
                   onClick={() => select(i)}
-                  className={`shrink-0 snap-start whitespace-nowrap border px-4 py-2 text-[13px] tracking-wide transition-colors ${
+                  className={`shrink-0 whitespace-nowrap border px-4 py-2.5 text-[13px] tracking-wide transition-colors ${
                     i === active
                       ? "border-forest bg-forest text-white"
                       : "border-line text-ink-soft"
@@ -138,9 +138,9 @@ export function Products() {
           </div>
 
           {/* ---- featured ---- */}
-          <div className="lg:col-span-8">
-            <div className="grid gap-6 sm:grid-cols-5 sm:gap-8">
-              <div className="mx-auto w-full max-w-[260px] text-forest sm:mx-0 sm:max-w-none sm:col-span-2">
+          <div className="min-w-0 lg:col-span-8">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-5 sm:gap-8">
+              <div className="mx-auto w-full max-w-[240px] text-forest sm:col-span-2 sm:mx-0 sm:max-w-none">
                 <div className="frame overflow-hidden">
                   <div className="relative aspect-[3/4] bg-canvas-2">
                     <AnimatePresence mode="popLayout" initial={false}>
@@ -165,7 +165,7 @@ export function Products() {
                 </div>
               </div>
 
-              <div className="sm:col-span-3">
+              <div className="min-w-0 sm:col-span-3">
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.div
                     key={p.name}
@@ -196,25 +196,29 @@ export function Products() {
                       onClick={() => setQuote(p)}
                       className="mt-6 w-full border border-forest bg-forest px-5 py-3 text-[13px] tracking-wide text-white transition-colors hover:bg-forest-deep sm:w-auto"
                     >
-                      request a quote for {p.name}
+                      request a quote
                     </button>
                   </motion.div>
                 </AnimatePresence>
 
                 {/* progress dots */}
-                <div className="mt-8 flex gap-2">
+                <div className="mt-8 flex gap-1.5">
                   {products.map((prod, i) => (
                     <button
                       key={prod.name}
                       type="button"
                       aria-label={`show ${prod.name}`}
                       onClick={() => select(i)}
-                      className={`h-1 rounded-full transition-all ${
-                        i === active
-                          ? "w-8 bg-forest"
-                          : "w-3 bg-line hover:bg-muted"
-                      }`}
-                    />
+                      className="group flex h-6 items-center"
+                    >
+                      <span
+                        className={`block h-1 rounded-full transition-all ${
+                          i === active
+                            ? "w-8 bg-forest"
+                            : "w-3 bg-line group-hover:bg-muted"
+                        }`}
+                      />
+                    </button>
                   ))}
                 </div>
               </div>
@@ -241,12 +245,12 @@ function Spec({
 }) {
   return (
     <div
-      className={`py-3 ${border ? "border-l border-line pl-4" : ""} ${
+      className={`min-w-0 py-3 ${border ? "border-l border-line pl-4" : "pr-3"} ${
         top ? "border-t border-line" : ""
       }`}
     >
       <dt className="text-[11px] tracking-[0.12em] text-muted">{k}</dt>
-      <dd className="mt-1 text-sm text-ink">{v}</dd>
+      <dd className="mt-1 break-words text-sm text-ink">{v}</dd>
     </div>
   );
 }

@@ -55,6 +55,8 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* safety net: no element may cause a sideways scroll (clip keeps sticky working) */
+  overflow-x: clip;
 }
 
 /* everything lowercase, per brand */
